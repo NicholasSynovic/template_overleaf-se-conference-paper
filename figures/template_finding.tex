@@ -1,0 +1,31 @@
+% =========================================================================
+% EMPIRICAL FINDING DISPLAY BOX
+% DEPENDENCY WARNING: This structural container relies directly on the 
+% \newfinding command (defined in typeset/misc.tex). 
+% Calling \newfinding inside this block:
+%   1. Increments the central sequential 'finding' counter register.
+%   2. Globally registers a target link for downstream \label and \ref calls.
+%   3. Injects the bold string "Finding X." directly into the box canvas stream.
+% =========================================================================
+
+\begin{tcolorbox}[
+    colback=yellow!30,    % Warm yellow alert canvas interior shading tint
+    colframe=black,       % High-contrast solid black border outline
+    sharp corners,        % Disables rounded bounding radii to mimic a standard \fcolorbox
+    boxrule=0.5pt,        % Ultra-clean frame line width boundary scale
+    % Comprehensive layout padding overrides to prevent text edge crowding:
+    left=2mm, 
+    right=2mm, 
+    top=2mm, 
+    bottom=5pt, 
+    width=0.98\linewidth  % Consistently centers and bounds the box safely inside column margins
+]
+    % Note: Typically, you will invoke only ONE unique \newfinding call per box container.
+    % Multiple consecutive calls here are used to demonstrate sequence step increments.
+    \newfinding In id cursus mi pretium tellus duis convallis.
+    
+    \newfinding Pulvinar vivamus fringilla lacus nec metus bibendum.
+    
+    \newfinding Iaculis massa nisl malesuada lacinia integer.
+    \label{finding: template-finding}
+\end{tcolorbox}

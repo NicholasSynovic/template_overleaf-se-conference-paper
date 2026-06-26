@@ -1,0 +1,23 @@
+% =========================================================================
+% TEMPLATE FIGURE PLACEHOLDER
+% Uses a standard boxed paragraph container to stand in for missing visual assets.
+% =========================================================================
+
+\begin{figure}[h] % [h] requests placement "here" inline with the surrounding text stream
+    \centering    % Horizontally centers the figure artifact within the column/page margins
+    
+    % \fbox draws a visible frame border around its inner content block
+    \fbox{
+        % \parbox structure creates an explicit, fixed-size paragraph boundary container
+        % Arguments format: [inner-alignment][height][content-alignment]{width}
+        \parbox[c][2in][c]{3in}{
+            \centering Missing Figure % Centered placeholder text string inside the bounding box
+        }
+    }
+    
+    % Core descriptive label rendered immediately beneath the figure box frame
+    \caption{Template figure placeholder}
+    
+    % Unique cross-referencing anchor tag used to reference this asset elsewhere via \ref{fig:template-fig}
+    \label{fig:template-fig}
+\end{figure}

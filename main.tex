@@ -1,0 +1,895 @@
+% =========================================================================
+% DOCUMENT CLASS & SETUP
+% =========================================================================
+
+% \documentclass[sigconf]{acmart}       % For final camera-ready peer-reviewed submissions
+\documentclass[sigconf,nonacm]{acmart} % For arXiv/preprint: removes copyright blocks & ACM footers
+
+% =========================================================================
+% GLOBAL PARAGRAPH AND PROSE RULES
+% =========================================================================
+% 1. Target Length: Aim for 3–7 sentences per paragraph. Avoid single-sentence 
+%    paragraphs and dense walls of text.
+% 2. Functional Focus: Each paragraph must serve a singular rhetorical function 
+%    (e.g., context, problem, method, finding, interpretation, implication, 
+%    limitation, or future work).
+% 3. Explicit Signposting: Maintain visible logical flow across paragraph 
+%    boundaries using structural transitions (e.g., "However", "As a result", 
+%    "Consequently", "In contrast").
+% 4. Micro-Sections: Use \myparagraph{...} blocks to signify named mini-paragraphs 
+%    with specialized micro-rhetorical goals (e.g., "Contributions", "Significance").
+
+% =========================================================================
+% CONDITIONAL DEBUGGING FLAGS
+% =========================================================================
+
+\newif\ifDEBUG  % Declares a boolean switch called "DEBUG" for conditional compilation
+\DEBUGtrue      % Set DEBUG to true (activates draft/todo notes)
+\DEBUGfalse     % Set DEBUG to false (silences draft notes for clean compilation)
+
+% =========================================================================
+% MODULAR PREAMBLE IMPORTS
+% =========================================================================
+
+\input{misc/data}        % Imports global stats, variables, and data macros
+\input{misc/typesetting} % Imports formatting overrides, extra packages, and layout tweaks
+
+% =========================================================================
+% CUSTOM LOGO MACROS
+% =========================================================================
+
+% Delays definition until document start to prevent package conflicts
+\AtBeginDocument{%
+    % Safely defines \BibTeX logo if not already defined by a loaded package
+    \providecommand\BibTeX{{%
+        \normalfont B\kern-0.5em{%   % Backspaces slightly after 'B'
+            \scshape                 % Switches to small caps for 'ib'
+            i\kern-0.25em b}\kern-0.8em\TeX}}} 
+% Micro-spaces 'ib' and pulls 'TeX' close
+
+% =========================================================================
+% RIGHTS & COPYRIGHT MANAGEMENT (Suppressed while 'nonacm' is active)
+% =========================================================================
+
+\setcopyright{acmlicensed}          % Specifies the ACM licensing agreement type
+\copyrightyear{2026}                % Sets the explicit copyright year
+\acmYear{2026}                      % Sets the publishing year index
+\acmDOI{XXXXXXX.XXXXXXX}            % Placeholder for the Digital Object Identifier string
+\acmISBN{978-1-4503-XXXX-X/18/06}   % Placeholder for the standard publication ISBN
+
+% Defines conference acronym, full metadata description, dates, and geographic location
+\acmConference[Conference acronym 'XX]{Make sure to enter the correct
+  conference title from your rights confirmation email}{June 03--05,
+  2018}{Woodstock, NY}
+
+% =========================================================================
+% DOCUMENT CONTENT START
+% =========================================================================
+
+\begin{document}
+
+\title{\textbf{INSERT TITLE}} % Formats the core paper title in bold face
+
+% -------------------------------------------------------------------------
+% AUTHOR METADATA
+% -------------------------------------------------------------------------
+
+\author{Nicholas M. Synovic}
+\email{nsynovic@luc.edu}
+\orcid{0000-0003-0413-4594} % Unique digital author identifier
+\affiliation{
+  \institution{Loyola University Chicago}
+  \streetaddress{1032 W Sheridan Rd}
+  \city{Chicago}
+  \state{Illinois}
+  \country{USA}
+  \postcode{60660}
+}
+
+% Replaces the full author list in page running headers with a concise version to save space
+\renewcommand{\shortauthors}{Synovic}
+
+% -------------------------------------------------------------------------
+% ABSTRACT SECTION
+% -------------------------------------------------------------------------
+
+\begin{abstract}
+% Mini‑paragraph 1: establish domain, then pivot to the core problem and its consequences.
+% Target: Sentences 1–3.
+Lorem ipsum dolor sit amet consectetur adipiscing elit. 
+Quisque faucibus ex sapien vitae pellentesque sem placerat. 
+In id cursus mi pretium tellus duis convallis. 
+
+% Mini‑paragraph 2: state ‘In this paper, we…’ and summarize design/method at one‑sentence granularity, including scope (data size, systems, participants).
+% Target: Sentences 4–5.
+Tempus leo eu aenean sed diam urna tempor. 
+Pulvinar vivamus fringilla lacus nec metus bibendum egestas. 
+
+% Mini‑paragraph 3: headline result, supporting insight, and a concrete impact statement for practice/future research (no detailed numbers or stats).
+% Target: Sentences 6–8.
+Iaculis massa nisl malesuada lacinia integer nunc posuere. 
+Ut hendrerit semper vel class aptent taciti sociosqu. 
+Ad litora torquent per conubia nostra inceptos himenaeos.
+\end{abstract}
+
+% =========================================================================
+% ACM COMPUTING CLASSIFICATION SYSTEM (https://dl.acm.org/ccs)
+% =========================================================================
+\begin{CCSXML}
+\end{CCSXML}
+
+% The \ccsdesc macros render XML classifications into the document footer
+\ccsdesc[500]{Software and its engineering}
+
+% =========================================================================
+% KEYWORDS INDEXING
+% =========================================================================
+
+\keywords{Replace me}
+
+\maketitle
+
+% =========================================================================
+% SECTION: INTRODUCTION
+% Intro arc: Paragraphs/blocks move from broad context → specific gap → overall approach → contributions → significance → roadmap.
+% =========================================================================
+\input{figures/template_figure}
+\section{Introduction}
+\label{sec:introduction}
+
+% --- PARAGRAPH 1: CONTEXT AND HOOK ---
+% Function: Intro paragraph 1.
+% Target: 3–6 sentences.
+% Content: Establish the broad software engineering domain, why it matters (reliability, cost, UX, scientific impact), and a hook that shows the domain is non‑trivial. No detailed technicalities here.
+Lorem ipsum dolor sit amet consectetur adipiscing elit.
+Quisque faucibus ex sapien vitae pellentesque sem placerat. 
+In id cursus mi pretium tellus duis convallis.
+Tempus leo eu aenean sed diam urna tempor. 
+Pulvinar vivamus fringilla lacus nec metus bibendum egestas.
+Iaculis massa nisl malesuada lacinia integer nunc posuere. 
+
+% --- PARAGRAPH 2: NARROWED PROBLEM AND GAP ---
+% Function: Intro paragraph 2.
+% Target: 4–7 sentences.
+% Content: Summarize current practice/prior work, then pivot with a clear ‘However/Yet/Despite this’ sentence that states the precise gap or friction point. End by emphasizing why this gap is consequential.
+Lorem ipsum dolor sit amet consectetur adipiscing elit. 
+Quisque faucibus ex sapien vitae pellentesque sem placerat.
+In id cursus mi pretium tellus duis convallis. 
+Tempus leo eu aenean sed diam urna tempor.
+Pulvinar vivamus fringilla lacus nec metus bibendum egestas. 
+Iaculis massa nisl malesuada lacinia integer nunc posuere.
+Ut hendrerit semper vel class aptent taciti sociosqu. 
+
+% --- PARAGRAPH 3: GOAL AND APPROACH (THE CORE INSIGHT) ---
+% Function: Intro paragraph 3.
+% Target: 3–6 sentences.
+% Content: Present the overall research goal and high‑level approach (system, study, framework). Include plain‑language intuition about why your approach should address the stated gap.
+Lorem ipsum dolor sit amet consectetur adipiscing elit. 
+Quisque faucibus ex sapien vitae pellentesque sem placerat.
+In id cursus mi pretium tellus duis convallis. 
+Tempus leo eu aenean sed diam urna tempor.
+Pulvinar vivamus fringilla lacus nec metus bibendum egestas. 
+Iaculis massa nisl malesuada lacinia integer nunc posuere.
+
+% --- PARAGRAPH 4: CONTRIBUTIONS ---
+% Structure: Use 3–4 bullets, each describing one type of contribution (artifact, empirical study, insight, open science). 
+% Formatting Rule: Keep each item one sentence plus a short clarifying clause, avoiding vague phrases (‘novel’, ‘significant’) without specifics.
+\myparagraph{Contributions}
+This paper makes the following core contributions:
+\begin{itemize}[leftmargin=16pt, rightmargin=5pt, topsep=0pt]
+    % Contribution 1: The Artifact (Tool / Framework / Dataset)
+    \item Lorem ipsum dolor sit amet consectetur adipiscing elit.
+    % Contribution 2: The Empirical Scale & Matrix Analysis
+    \item Lorem ipsum dolor sit amet consectetur adipiscing elit.
+    % Contribution 3: The Findings, Open Science & Replication Package
+    \item Lorem ipsum dolor sit amet consectetur adipiscing elit.
+\end{itemize}
+
+% --- PARAGRAPH 5: SIGNIFICANCE & SCOPE ---
+% Function: Optional “headline results + scope” preview block.
+% Target: 3–5 sentences.
+% Content: Provide 1–2 headline quantitative or qualitative outcomes, plus a brief statement of scope/assumptions (where it works, where it might not). Do not repeat details from the Results; this is a teaser.
+\myparagraph{Significance}
+Lorem ipsum dolor sit amet consectetur adipiscing elit. 
+Quisque faucibus ex sapien vitae pellentesque sem placerat.
+In id cursus mi pretium tellus duis convallis. 
+Tempus leo eu aenean sed diam urna tempor.
+Pulvinar vivamus fringilla lacus nec metus bibendum egestas. 
+
+% --- PARAGRAPH 6: PAPER ROADMAP ---
+% Function: Manuscript outline.
+% Target: 2–4 sentences.
+% Content: Walk the reader through the structure of the paper in order (Background → Methodology → RQ evaluations → Discussion → Threats → Conclusion). Mention section IDs explicitly so the roadmap doubles as a structural map.
+\myparagraph{Paper Outline}
+This paper is organized as follows: 
+\Cref{sec:background} provides essential background and reviews related work, 
+\Cref{sec:methodology} describes Lorem ipsum dolor sit amet consectetur adipiscing elit,
+\Cref{sec:rq1} Lorem ipsum dolor sit amet consectetur adipiscing elit,
+\Cref{sec:rq2} Lorem ipsum dolor sit amet consectetur adipiscing elit, and
+\Cref{sec:rq3} Lorem ipsum dolor sit amet consectetur adipiscing elit.
+The paper concludes in \Cref{sec:discussion} with a discussion of implications for the software engineering community and future work, followed by an examination of potential threats to validity in \Cref{sec:threats}.
+
+% =========================================================================
+% SECTION: BACKGROUND AND RELATED WORK
+% Narrative Arc: "What world are we in?" -> "What fails here?" -> "How do we fix it?"
+% =========================================================================
+\section{Background and Related Work}
+\label{sec:background}
+
+% --- MAJOR SIGNPOSTING & RE-CONTEXTUALIZATION ---
+% Entry paragraph (3–5 sentences): re‑state the problem space with more technical depth than the Introduction and briefly signpost the three subsections (domain overview, existing approaches, conceptual foundation).
+Lorem ipsum dolor sit amet consectetur adipiscing elit. 
+Quisque faucibus ex sapien vitae pellentesque sem placerat.
+In id cursus mi pretium tellus duis convallis. 
+Tempus leo eu aenean sed diam urna tempor.
+Pulvinar vivamus fringilla lacus nec metus bibendum egestas. 
+
+% =========================================================================
+% SUBSECTION 1: THE DOMAIN OVERVIEW (Domain overview)
+% =========================================================================
+\subsection{Subsection 1}
+\label{subsec:subsection-1}
+
+% Paragraph 1 – Domain definitions and workflows: 
+% Technical definitions and standard workflows. Clarify entities (projects, pipelines, registries), typical processes, and key terminology.
+Lorem ipsum dolor sit amet consectetur adipiscing elit. 
+Quisque faucibus ex sapien vitae pellentesque sem placerat.
+In id cursus mi pretium tellus duis convallis. 
+Tempus leo eu aenean sed diam urna tempor.
+Pulvinar vivamus fringilla lacus nec metus bibendum egestas. 
+Iaculis massa nisl malesuada lacinia integer nunc posuere.
+
+% Paragraph 2 – Cause‑and‑effect linkages: 
+% Explain how practices and constraints in this domain lead to specific challenges (e.g., fragility, reproducibility issues). Use ‘As a result/Consequently’ to make causal links explicit.
+Lorem ipsum dolor sit amet consectetur adipiscing elit.
+Quisque faucibus ex sapien vitae pellentesque sem placerat. 
+In id cursus mi pretium tellus duis convallis.
+Tempus leo eu aenean sed diam urna tempor. 
+Pulvinar vivamus fringilla lacus nec metus bibendum egestas.
+Iaculis massa nisl malesuada lacinia integer nunc posuere. 
+
+% Paragraph 3 – Transition to existing approaches: 
+% Close the subsection by hinting at what practitioners or researchers currently do to cope with these challenges, setting up Subsection 2.
+Lorem ipsum dolor sit amet consectetur adipiscing elit. 
+Quisque faucibus ex sapien vitae pellentesque sem placerat.
+In id cursus mi pretium tellus duis convallis. 
+Tempus leo eu aenean sed diam urna tempor.
+Pulvinar vivamus fringilla lacus nec metus bibendum egestas. 
+Iaculis massa nisl malesuada lacinia integer nunc posuere.
+
+% =========================================================================
+% SUBSECTION 2: EXISTING APPROACHES & PRIOR WORK
+% =========================================================================
+\subsection{Subsection 2}
+\label{subsec:subsection-2}
+
+% Paragraph 1 – Subsection entry and literature grouping: 
+% Target: 3–5 sentences. 
+% Content: Explicitly tie back to Subsection 1 and describe high‑level categories of existing approaches (e.g., tooling, guidelines, empirical studies). Group literature by theme, not chronologically.
+Lorem ipsum dolor sit amet consectetur adipiscing elit. 
+Quisque faucibus ex sapien vitae pellentesque sem placerat.
+In id cursus mi pretium tellus duis convallis. 
+Tempus leo eu aenean sed diam urna tempor.
+Pulvinar vivamus fringilla lacus nec metus bibendum egestas. 
+Iaculis massa nisl malesuada lacinia integer nunc posuere.
+
+% Paragraph 2 – Contrastive analysis and limitations: 
+% Content: Describe what these approaches achieve and where they fall short. Use contrast markers (‘However’, ‘In contrast’) and connect limitations to your gap.
+Lorem ipsum dolor sit amet consectetur adipiscing elit.
+Quisque faucibus ex sapien vitae pellentesque sem placerat. 
+In id cursus mi pretium tellus duis convallis.
+Tempus leo eu aenean sed diam urna tempor. 
+Pulvinar vivamus fringilla lacus nec metus bibendum egestas.
+Iaculis massa nisl malesuada lacinia integer nunc posuere. 
+
+% Paragraph 3 – Exit transition to conceptual lens: 
+% Content: Summarize the overall shortcomings of existing work and point forward to the conceptual foundation you will use to reason about them (Subsection 3).
+Lorem ipsum dolor sit amet consectetur adipiscing elit. 
+Quisque faucibus ex sapien vitae pellentesque sem placerat.
+In id cursus mi pretium tellus duis convallis. 
+Tempus leo eu aenean sed diam urna tempor.
+Pulvinar vivamus fringilla lacus nec metus bibendum egestas. 
+Iaculis massa nisl malesuada lacinia integer nunc posuere.
+
+% =========================================================================
+% SUBSECTION 3: CONCEPTUAL FOUNDATION
+% =========================================================================
+\subsection{Subsection 3}
+\label{subsec:subsection-3}
+
+% Paragraph 1 – Subsection entry and theoretical framing: 
+% Content: Introduce the conceptual/theoretical lens (e.g., socio‑technical, diffusion, reliability) that underpins your study. Motivate why this lens is appropriate given the domain and prior work.
+Lorem ipsum dolor sit amet consectetur adipiscing elit. 
+Quisque faucibus ex sapien vitae pellentesque sem placerat.
+In id cursus mi pretium tellus duis convallis. 
+Tempus leo eu aenean sed diam urna tempor.
+Pulvinar vivamus fringilla lacus nec metus bibendum egestas. 
+Iaculis massa nisl malesuada lacinia integer nunc posuere.
+
+% Paragraph 2 – Technical hook into methodology: 
+% Content: Tie the chosen lens directly to your upcoming methodology, hinting at key constructs, relationships, or hypotheses that will be operationalized in the Methods and RQ sections.
+Lorem ipsum dolor sit amet consectetur adipiscing elit. 
+Quisque faucibus ex sapien vitae pellentesque sem placerat.
+In id cursus mi pretium tellus duis convallis. 
+Tempus leo eu aenean sed diam urna tempor.
+Pulvinar vivamus fringilla lacus nec metus bibendum egestas. 
+Iaculis massa nisl malesuada lacinia integer nunc posuere.
+
+% =========================================================================
+% SECTION: RESEARCH QUESTIONS (The Structural Bridge)
+% =========================================================================
+\section{Research Questions}
+\label{sec:research_questions}
+
+% --- INTRODUCTORY SIGNPOSTING & GAP ANCHORING ---
+% Target: 1–3 sentences. 
+% Content: Remind the reader of the key gap from Background and state that you now formalize the evaluation goals as research questions.
+Lorem ipsum dolor sit amet consectetur adipiscing elit. 
+Quisque faucibus ex sapien vitae pellentesque sem placerat.
+In id cursus mi pretium tellus duis convallis. 
+
+% --- THE FORMAL RQ LIST ---
+% Comment: List 3–4 concise RQs, each focusing on one dimension (e.g., prevalence, patterns, impact). Keep each RQ to a single sentence, with an optional bolded dimension label.
+\noindent We address the following research questions:
+\begin{enumerate}[label=\textbf{RQ\arabic*:}, leftmargin=*]
+    \item \textbf{[Dimension 1, e.g., Prevalence].} Lorem ipsum dolor sit amet consectetur adipiscing elit?
+    \item \textbf{[Dimension 2, e.g., Patterns].} Lorem ipsum dolor sit amet consectetur adipiscing elit?
+    \item \textbf{[Dimension 3, e.g., Impact].} Lorem ipsum dolor sit amet consectetur adipiscing elit?
+\end{enumerate}
+
+% --- MAPPING PARAGRAPH ---
+% Target: 2–3 sentences. 
+% Content: Map each RQ to its evaluation section (RQ1, RQ2, RQ3) and briefly mention which data and methods answer which question. This proves the downstream structure aligns with stated goals.
+Lorem ipsum dolor sit amet consectetur adipiscing elit. 
+Quisque faucibus ex sapien vitae pellentesque sem placerat.
+In id cursus mi pretium tellus duis convallis. 
+
+% =========================================================================
+% SECTION: EVALUATION OF RESEARCH QUESTION 1 (RQ1)
+% RQ1 block arc: overview & motivation → RQ1‑specific methodology → RQ1 findings → formal answer box → pointer to Discussion.
+% =========================================================================
+\section{Evaluation of RQ1: [Dimension Title, e.g., Prevalence]}
+\label{sec:rq1_evaluation}
+
+% --- RQ1 OVERVIEW PARAGRAPH ---
+% Target: 6–8 sentences. 
+% Content: Restate RQ1 verbatim, explain its role relative to other RQs (baseline, patterns, impact), and describe why this dimension matters. End with a sentence that introduces the upcoming methodology subsection.
+Lorem ipsum dolor sit amet consectetur adipiscing elit. 
+Quisque faucibus ex sapien vitae pellentesque sem placerat. 
+In id cursus mi pretium tellus duis convallis.
+Tempus leo eu aenean sed diam urna tempor. 
+Pulvinar vivamus fringilla lacus nec metus bibendum egestas.
+Iaculis massa nisl malesuada lacinia integer nunc posuere. 
+Ut hendrerit semper vel class aptent taciti sociosqu. 
+Ad litora torquent per conubia nostra inceptos himenaeos.
+
+% --- SUBSECTION: METHODOLOGY FOR RQ1 ---
+\subsection{RQ1 Methodology and Operationalization}
+\label{subsec:rq1_methodology}
+\input{figures/template_figure}
+
+% Paragraph 1 – Design & rationale: 
+% Explain the study design (experiment, case study, mining, survey) and why it is appropriate for RQ1.
+Lorem ipsum dolor sit amet consectetur adipiscing elit. 
+Quisque faucibus ex sapien vitae pellentesque sem placerat. 
+In id cursus mi pretium tellus duis convallis. 
+Tempus leo eu aenean sed diam urna tempor.
+
+% Paragraph 2 – Data sources & sampling: 
+% Describe datasets, projects, participants, and inclusion/exclusion rules. Provide enough detail for replication.
+Lorem ipsum dolor sit amet consectetur adipiscing elit. 
+Quisque faucibus ex sapien vitae pellentesque sem placerat. 
+In id cursus mi pretium tellus duis convallis. 
+Tempus leo eu aenean sed diam urna tempor.
+
+% Paragraph 3 – Procedure: 
+% Outline the step‑by‑step execution (pipelines run, tasks assigned, scripts used), emphasizing chronology and reproducibility.
+Lorem ipsum dolor sit amet consectetur adipiscing elit. 
+Quisque faucibus ex sapien vitae pellentesque sem placerat. 
+In id cursus mi pretium tellus duis convallis. 
+Tempus leo eu aenean sed diam urna tempor.
+
+% Paragraph 4 – Measures & analysis plan: 
+% Enumerate metrics and constructs, describe how they are calculated, and specify statistical/analytical methods used to answer RQ1.
+Lorem ipsum dolor sit amet consectetur adipiscing elit. 
+Quisque faucibus ex sapien vitae pellentesque sem placerat. 
+In id cursus mi pretium tellus duis convallis. 
+Tempus leo eu aenean sed diam urna tempor.
+
+% Threats to Validity for RQ1:
+% Short paragraph. Note key RQ1‑specific threats (e.g., confounding, sampling, measurement) and point to the global Threats section for deeper analysis.
+\myparagraph{Threats to Validity for RQ1}
+Lorem ipsum dolor sit amet consectetur adipiscing elit. 
+Quisque faucibus ex sapien vitae pellentesque sem placerat. 
+In id cursus mi pretium tellus duis convallis. 
+
+% --- SUBSECTION: EMPIRICAL FINDINGS FOR RQ1 ---
+\subsection{RQ1 Empirical Findings}
+\label{subsec:rq1_findings}
+
+% Paragraph 1 – Overview and preprocessing: 
+% Describe the subset of data used for RQ1, any preprocessing, exclusions, and basic descriptive stats (e.g., counts, ranges).
+Lorem ipsum dolor sit amet consectetur adipiscing elit. 
+Quisque faucibus ex sapien vitae pellentesque sem placerat. 
+In id cursus mi pretium tellus duis convallis. 
+Tempus leo eu aenean sed diam urna tempor.
+
+% Paragraphs 2–3 – Main findings with figures/tables: 
+% Present the core results in logical order (e.g., primary metrics, distributions, comparative stats). Every figure/table referenced must be explicitly cited in the text (‘As shown in Figure X…’). No interpretation beyond factual patterns.
+Lorem ipsum dolor sit amet consectetur adipiscing elit. 
+Quisque faucibus ex sapien vitae pellentesque sem placerat.
+In id cursus mi pretium tellus duis convallis. 
+Tempus leo eu aenean sed diam urna tempor.
+Pulvinar vivamus fringilla lacus nec metus bibendum egestas. 
+Iaculis massa nisl malesuada lacinia integer nunc posuere.
+Ut hendrerit semper vel class aptent taciti sociosqu. 
+
+% Paragraph 4 – Trends, patterns, and null results: 
+% Summarize observed trends, highlight interesting edge cases, and explicitly mention negative or null results. Stay descriptive; save interpretation for the Discussion.
+Lorem ipsum dolor sit amet consectetur adipiscing elit. 
+Quisque faucibus ex sapien vitae pellentesque sem placerat. 
+In id cursus mi pretium tellus duis convallis. 
+Tempus leo eu aenean sed diam urna tempor.
+
+% Formal ‘Answer to RQ1’ box: 
+% 2–3 sentences of neutral synthesis directly answering the RQ text, with no speculation.
+\input{figures/template_finding}
+
+% Pointer sentence to Discussion: 
+% Single sentence that forwards the reader to the Discussion for qualitative interpretation and implications.
+Lorem ipsum dolor sit amet consectetur adipiscing elit.
+
+% =========================================================================
+% SECTION: EVALUATION OF RESEARCH QUESTION 2 (RQ2)
+% RQ2 block arc: overview & motivation → RQ2‑specific methodology → RQ2 findings → formal answer box → pointer to Discussion.
+% =========================================================================
+\section{Evaluation of RQ2: [Dimension Title, e.g., Patterns]}
+\label{sec:rq2_evaluation}
+
+% --- RQ2 OVERVIEW PARAGRAPH ---
+% Target: 6–8 sentences.
+% Content: Restate RQ2 verbatim, explain its role relative to other RQs.
+Lorem ipsum dolor sit amet consectetur adipiscing elit.
+Quisque faucibus ex sapien vitae pellentesque sem placerat. 
+In id cursus mi pretium tellus duis convallis.
+Tempus leo eu aenean sed diam urna tempor. 
+Pulvinar vivamus fringilla lacus nec metus bibendum egestas.
+Iaculis massa nisl malesuada lacinia integer nunc posuere. 
+Ut hendrerit semper vel class aptent taciti sociosqu. 
+Ad litora torquent per conubia nostra inceptos himenaeos.
+
+% --- SUBSECTION: METHODOLOGY FOR RQ2 ---
+\subsection{RQ2 Methodology and Categorization Pipeline}
+\label{subsec:rq2_methodology}
+\input{figures/template_figure}
+
+% Paragraph 1 – Design & rationale
+Lorem ipsum dolor sit amet consectetur adipiscing elit.
+Quisque faucibus ex sapien vitae pellentesque sem placerat. 
+In id cursus mi pretium tellus duis convallis. 
+Tempus leo eu aenean sed diam urna tempor.
+
+% Paragraph 2 – Data sources & sampling
+Lorem ipsum dolor sit amet consectetur adipiscing elit.
+Quisque faucibus ex sapien vitae pellentesque sem placerat. 
+In id cursus mi pretium tellus duis convallis. 
+Tempus leo eu aenean sed diam urna tempor.
+
+% Paragraph 3 – Procedure
+Lorem ipsum dolor sit amet consectetur adipiscing elit.
+Quisque faucibus ex sapien vitae pellentesque sem placerat. 
+In id cursus mi pretium tellus duis convallis. 
+Tempus leo eu aenean sed diam urna tempor.
+
+% Paragraph 4 – Measures & analysis plan
+Lorem ipsum dolor sit amet consectetur adipiscing elit.
+Quisque faucibus ex sapien vitae pellentesque sem placerat. 
+In id cursus mi pretium tellus duis convallis. 
+Tempus leo eu aenean sed diam urna tempor.
+
+% Threats to Validity for RQ2
+\myparagraph{Threats to Validity for RQ2}
+Lorem ipsum dolor sit amet consectetur adipiscing elit.
+Quisque faucibus ex sapien vitae pellentesque sem placerat. 
+In id cursus mi pretium tellus duis convallis. 
+
+% --- SUBSECTION: EMPIRICAL FINDINGS FOR RQ2 ---
+\subsection{RQ2 Empirical Findings}
+\label{subsec:rq2_findings}
+
+% Paragraph 1 – Overview and preprocessing
+Lorem ipsum dolor sit amet consectetur adipiscing elit.
+Quisque faucibus ex sapien vitae pellentesque sem placerat. 
+In id cursus mi pretium tellus duis convallis. 
+Tempus leo eu aenean sed diam urna tempor.
+
+% Paragraphs 2–3 – Main findings with figures/tables
+Lorem ipsum dolor sit amet consectetur adipiscing elit. 
+Quisque faucibus ex sapien vitae pellentesque sem placerat.
+In id cursus mi pretium tellus duis convallis. 
+Tempus leo eu aenean sed diam urna tempor.
+Pulvinar vivamus fringilla lacus nec metus bibendum egestas. 
+Iaculis massa nisl malesuada lacinia integer nunc posuere.
+Ut hendrerit semper vel class aptent taciti sociosqu. 
+
+% Paragraph 4 – Trends, patterns, and null results
+Lorem ipsum dolor sit amet consectetur adipiscing elit.
+Quisque faucibus ex sapien vitae pellentesque sem placerat. 
+In id cursus mi pretium tellus duis convallis. 
+Tempus leo eu aenean sed diam urna tempor. 
+
+% Formal ‘Answer to RQ2’ box: 2–3 sentences of neutral synthesis.
+\input{figures/template_finding}
+
+% Pointer sentence to Discussion
+Lorem ipsum dolor sit amet consectetur adipiscing elit.
+
+% =========================================================================
+% SECTION: EVALUATION OF RESEARCH QUESTION 3 (RQ3)
+% RQ3 block arc: overview & motivation → RQ3‑specific methodology → RQ3 findings → formal answer box → pointer to Discussion.
+% =========================================================================
+\section{Evaluation of RQ3: [Dimension Title, e.g., Impact]}
+\label{sec:rq3_evaluation}
+
+% --- RQ3 OVERVIEW PARAGRAPH ---
+Lorem ipsum dolor sit amet consectetur adipiscing elit.
+Quisque faucibus ex sapien vitae pellentesque sem placerat. 
+In id cursus mi pretium tellus duis convallis.
+Tempus leo eu aenean sed diam urna tempor. 
+Pulvinar vivamus fringilla lacus nec metus bibendum egestas.
+Iaculis massa nisl malesuada lacinia integer nunc posuere. 
+Ut hendrerit semper vel class aptent taciti sociosqu. 
+Ad litora torquent per conubia nostra inceptos himenaeos.
+
+% --- SUBSECTION: METHODOLOGY FOR RQ3 ---
+\subsection{RQ3 Methodology and Analytical Matrix}
+\label{subsec:rq3_methodology}
+\input{figures/template_figure}
+
+% Paragraph 1 – Design & rationale
+Lorem ipsum dolor sit amet consectetur adipiscing elit.
+Quisque faucibus ex sapien vitae pellentesque sem placerat. 
+In id cursus mi pretium tellus duis convallis. 
+Tempus leo eu aenean sed diam urna tempor.
+
+% Paragraph 2 – Data sources & sampling
+Lorem ipsum dolor sit amet consectetur adipiscing elit.
+Quisque faucibus ex sapien vitae pellentesque sem placerat. 
+In id cursus mi pretium tellus duis convallis. 
+Tempus leo eu aenean sed diam urna tempor. 
+
+% Paragraph 3 – Procedure
+Lorem ipsum dolor sit amet consectetur adipiscing elit.
+Quisque faucibus ex sapien vitae pellentesque sem placerat. 
+In id cursus mi pretium tellus duis convallis. 
+Tempus leo eu aenean sed diam urna tempor.
+
+% Paragraph 4 – Measures & analysis plan
+Lorem ipsum dolor sit amet consectetur adipiscing elit.
+Quisque faucibus ex sapien vitae pellentesque sem placerat. 
+In id cursus mi pretium tellus duis convallis. 
+Tempus leo eu aenean sed diam urna tempor.
+
+% Threats to Validity for RQ3
+\myparagraph{Threats to Validity for RQ3}
+Lorem ipsum dolor sit amet consectetur adipiscing elit.
+Quisque faucibus ex sapien vitae pellentesque sem placerat. 
+In id cursus mi pretium tellus duis convallis. 
+
+% --- SUBSECTION: EMPIRICAL FINDINGS FOR RQ3 ---
+\subsection{RQ3 Empirical Findings}
+\label{subsec:rq3_findings}
+
+% Paragraph 1 – Overview and preprocessing
+Lorem ipsum dolor sit amet consectetur adipiscing elit.
+Quisque faucibus ex sapien vitae pellentesque sem placerat. 
+In id cursus mi pretium tellus duis convallis. 
+Tempus leo eu aenean sed diam urna tempor.
+
+% Paragraphs 2–3 – Main findings with figures/tables
+Lorem ipsum dolor sit amet consectetur adipiscing elit. 
+Quisque faucibus ex sapien vitae pellentesque sem placerat.
+In id cursus mi pretium tellus duis convallis. 
+Tempus leo eu aenean sed diam urna tempor.
+Pulvinar vivamus fringilla lacus nec metus bibendum egestas. 
+Iaculis massa nisl malesuada lacinia integer nunc posuere.
+Ut hendrerit semper vel class aptent taciti sociosqu. 
+
+% Paragraph 4 – Trends, patterns, and null results
+Lorem ipsum dolor sit amet consectetur adipiscing elit.
+Quisque faucibus ex sapien vitae pellentesque sem placerat. 
+In id cursus mi pretium tellus duis convallis. 
+Tempus leo eu aenean sed diam urna tempor. 
+
+% Formal ‘Answer to RQ3’ box: 2–3 sentences of neutral synthesis.
+\input{figures/template_finding}
+
+% Pointer sentence to Discussion
+Lorem ipsum dolor sit amet consectetur adipiscing elit.
+Quisque faucibus ex sapien vitae pellentesque sem placerat. 
+In id cursus mi pretium tellus duis convallis. 
+Tempus leo eu aenean sed diam urna tempor. 
+
+% =========================================================================
+% SECTION: DISCUSSION
+% Narrative Flow: Narrow (Interpretations) -> Broad (Implications) 
+%                -> Defensive (Limitations) -> Forward-Looking (Future Work)
+% =========================================================================
+\section{Discussion}
+\label{sec:discussion}
+
+% --- PARAGRAPH 1: DISCUSSION OPENING ---
+% Target: 7–9 sentences. 
+% Content: Restate the high‑level takeaway of the study, tying back to the Introduction’s big gap and summarizing the overall pattern across RQ1–RQ3. This paragraph sets the tone for the rest of the Discussion.
+Lorem ipsum dolor sit amet consectetur adipiscing elit. 
+Quisque faucibus ex sapien vitae pellentesque sem placerat. 
+In id cursus mi pretium tellus duis convallis. 
+Tempus leo eu aenean sed diam urna tempor. 
+Pulvinar vivamus fringilla lacus nec metus bibendum egestas. 
+Iaculis massa nisl malesuada lacinia integer nunc posuere. 
+Ut hendrerit semper vel class aptent taciti sociosqu. 
+
+% --- SUBSECTION: INTERPRETATION OF RQS ---
+% Per‑RQ mini‑discussions: each \myparagraph is 8–12 sentences total, structured as interpretation → mechanism → relation to prior work → scoped implication/limit.
+\subsection{Interpretation of Research Questions}
+\label{subsec:interpretations}
+
+\myparagraph{RQ$_1$ -- Baseline Prevalence Metrics}
+% Interpretation: 2–3 sentences summarizing how the findings answer RQ1.
+Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis.
+% Mechanism/Why: 2–3 sentences explaining why these patterns likely occur, grounded in theory or domain knowledge.
+Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis.
+% Relation to prior work: 2–3 sentences comparing RQ1 findings to specific prior studies; note agreements and contradictions.
+Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis.
+% Scoped actionable/limit: 2–3 sentences stating implications or recommendations for practice, plus one key limitation that tempers those recommendations.
+Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor.
+
+\myparagraph{RQ$_2$ -- The Mechanics of Fragile Reuse}
+% Interpretation: 2–3 sentences summarizing how the findings answer RQ2.
+Lorem ipsum dolor sit amet consectetur adipiscing elit.
+% Mechanism/Why: 2–3 sentences explaining why these patterns likely occur, grounded in theory or domain knowledge.
+Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis.
+% Relation to prior work: 2–3 sentences comparing RQ2 findings to specific prior studies.
+Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis.
+% Scoped actionable/limit: 2–3 sentences stating implications or recommendations for practice.
+Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor.
+
+\myparagraph{RQ$_3$ -- Quantification of Pipeline Half-Life}
+% Interpretation: 2–3 sentences summarizing how the findings answer RQ3.
+Lorem ipsum dolor sit amet consectetur adipiscing elit.
+% Mechanism/Why: 2–3 sentences explaining why these patterns likely occur, grounded in theory or domain knowledge.
+Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis.
+% Relation to prior work: 2–3 sentences comparing RQ3 findings to specific prior studies.
+Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis.
+% Scoped actionable/limit: 2–3 sentences stating implications or recommendations for practice.
+Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor.
+
+% --- SUBSECTION: WIDER IMPLICATIONS ---
+\subsection{Wider Implications for Science and Engineering}
+\label{subsec:implications}
+
+% Paragraph 1 – Theoretical implications: 
+% Target: 5–7 sentences. 
+% Content: Synthesize across RQs to state how the study refines or challenges existing theories/models. Focus on general principles.
+Lorem ipsum dolor sit amet consectetur adipiscing elit. 
+Quisque faucibus ex sapien vitae pellentesque sem placerat. 
+In id cursus mi pretium tellus duis convallis. 
+Tempus leo eu aenean sed diam urna tempor. 
+Pulvinar vivamus fringilla lacus nec metus bibendum egestas. 
+Iaculis massa nisl malesuada lacinia integer nunc posuere. 
+Ut hendrerit semper vel class aptent taciti sociosqu.
+
+% Paragraph 2 – Practical/industrial implications: 
+% Target: 5–7 sentences. 
+% Content: Translate findings into concrete recommendations for teams, tools, and processes, mentioning feasibility and constraints.
+Lorem ipsum dolor sit amet consectetur adipiscing elit. 
+Quisque faucibus ex sapien vitae pellentesque sem placerat. 
+In id cursus mi pretium tellus duis convallis. 
+Tempus leo eu aenean sed diam urna tempor. 
+Pulvinar vivamus fringilla lacus nec metus bibendum egestas. 
+Iaculis massa nisl malesuada lacinia integer nunc posuere. 
+Ut hendrerit semper vel class aptent taciti sociosqu.
+
+% Optional 3rd Paragraph – Policy / Educational Frameworks:
+% Target: Optional 5–7 sentences on implications for standards, curricula, or broader scientific practice.
+Lorem ipsum dolor sit amet consectetur adipiscing elit. 
+Quisque faucibus ex sapien vitae pellentesque sem placerat. 
+In id cursus mi pretium tellus duis convallis. 
+Tempus leo eu aenean sed diam urna tempor. 
+Pulvinar vivamus fringilla lacus nec metus bibendum egestas. 
+
+% --- SUBSECTION: LIMITATIONS AND BIASES ---
+\subsection{Limitations and Alternative Explanations}
+\label{subsec:limitations}
+
+% Paragraph 1 – Main limitations: 
+% Target: 5–7 sentences. 
+% Content: Summarize key limitations across design, data, and measures; explain how each might bias results or limit generality.
+Lorem ipsum dolor sit amet consectetur adipiscing elit. 
+Quisque faucibus ex sapien vitae pellentesque sem placerat. 
+In id cursus mi pretium tellus duis convallis. 
+Tempus leo eu aenean sed diam urna tempor. 
+Pulvinar vivamus fringilla lacus nec metus bibendum egestas. 
+
+% Paragraph 2 – Alternative explanations: 
+% Target: 5–7 sentences. 
+% Content: Present plausible alternative interpretations of major findings and briefly note what further data/methods would be needed to test them.
+Lorem ipsum dolor sit amet consectetur adipiscing elit. 
+Quisque faucibus ex sapien vitae pellentesque sem placerat. 
+In id cursus mi pretium tellus duis convallis. 
+Tempus leo eu aenean sed diam urna tempor. 
+Pulvinar vivamus fringilla lacus nec metus bibendum egestas. 
+
+% --- SUBSECTION: FUTURE DIRECTIONS ---
+\subsection{Future Research Trajectories}
+\label{subsec:future_directions}
+
+% Paragraph 1 – Next logical steps: 
+% Target: 4–6 sentences. 
+% Content: Propose immediate follow‑up studies (replications, scaling, boundary conditions), each explicitly linked to a specific result or limitation.
+Lorem ipsum dolor sit amet consectetur adipiscing elit. 
+Quisque faucibus ex sapien vitae pellentesque sem placerat. 
+In id cursus mi pretium tellus duis convallis. 
+Tempus leo eu aenean sed diam urna tempor. 
+
+% Paragraph 2 – Methodological refinements: 
+% Target: 3–5 sentences. 
+% Content: Suggest improvements to design, metrics, or data collection that would strengthen future evidence.
+Lorem ipsum dolor sit amet consectetur adipiscing elit. 
+Quisque faucibus ex sapien vitae pellentesque sem placerat. 
+In id cursus mi pretium tellus duis convallis. 
+
+% Paragraph 3 – New questions: 
+% Target: 4–6 sentences. 
+% Content: Outline new research questions opened by unexpected findings or implications; explain why each is important for empirical SE.
+Lorem ipsum dolor sit amet consectetur adipiscing elit. 
+Quisque faucibus ex sapien vitae pellentesque sem placerat. 
+In id cursus mi pretium tellus duis convallis. 
+Tempus leo eu aenean sed diam urna tempor. 
+
+% Final closing block – Take-Home Message:
+% Target: 4–6 sentences. 
+% Content: Provide a synthesized, confident statement of what the study ultimately shows and why it matters. No new ideas or data; this should echo the core contribution and high‑level impact.
+\myparagraph{Take-Home Message}
+Lorem ipsum dolor sit amet consectetur adipiscing elit. 
+Quisque faucibus ex sapien vitae pellentesque sem placerat. 
+In id cursus mi pretium tellus duis convallis. 
+Tempus leo eu aenean sed diam urna tempor. 
+Pulvinar vivamus fringilla lacus nec metus bibendum egestas. 
+Iaculis massa nisl malesuada lacinia integer nunc posuere. 
+
+% =========================================================================
+% SECTION: THREATS TO VALIDITY
+% =========================================================================
+\section{Threats to Validity}
+\label{sec:threats}
+
+% Section opening:
+% Target: 3–4 sentences. 
+% Content: Explain the purpose of this section (systematically analyzing internal, external, and construct validity threats) and note that detailed RQ‑specific threats were mentioned in each RQ methodology subsection.
+Lorem ipsum dolor sit amet consectetur adipiscing elit. 
+Quisque faucibus ex sapien vitae pellentesque sem placerat. 
+In id cursus mi pretium tellus duis convallis. 
+Our analysis follows the standard empirical software engineering classification distinguishing between internal, external, and construct validity.
+
+% --- SUBSECTION: INTERNAL VALIDITY ---
+\subsection{Internal Validity}
+\label{subsec:internal_validity}
+
+% First block (Confounding Variables): 
+% Content: Explain potential confounding variables and how they may distort causal interpretations; mention mitigation strategies.
+Lorem ipsum dolor sit amet consectetur adipiscing elit. 
+Quisque faucibus ex sapien vitae pellentesque sem placerat. 
+In id cursus mi pretium tellus duis convallis. 
+Tempus leo eu aenean sed diam urna tempor. 
+Pulvinar vivamus fringilla lacus nec metus bibendum egestas. 
+
+% Second block (History, Maturation, and Instrumentation): 
+% Content: Discuss history, maturation, instrumentation effects and their potential influence on outcomes; note how design choices attempt to control them.
+Lorem ipsum dolor sit amet consectetur adipiscing elit. 
+Quisque faucibus ex sapien vitae pellentesque sem placerat. 
+In id cursus mi pretium tellus duis convallis. 
+Tempus leo eu aenean sed diam urna tempor. 
+
+% Third block (Attrition and Missing Data): 
+% Content: Describe attrition/missing data patterns and how they were handled (e.g., exclusion, imputation, sensitivity analysis).
+Lorem ipsum dolor sit amet consectetur adipiscing elit. 
+Quisque faucibus ex sapien vitae pellentesque sem placerat. 
+In id cursus mi pretium tellus duis convallis. 
+
+% --- SUBSECTION: EXTERNAL VALIDITY ---
+\subsection{External Validity}
+\label{subsec:external_validity}
+
+% First block (Context & Generalizability): 
+% Content: Context & generalizability: clarify the study setting and domains, and explicitly state where the results may or may not generalize.
+Lorem ipsum dolor sit amet consectetur adipiscing elit. 
+Quisque faucibus ex sapien vitae pellentesque sem placerat. 
+In id cursus mi pretium tellus duis convallis. 
+Tempus leo eu aenean sed diam urna tempor. 
+
+% Second block (Sampling Bias): 
+% Content: Sampling bias: discuss how selection of projects/participants may skew results and how that limits external validity.
+Lorem ipsum dolor sit amet consectetur adipiscing elit. 
+Quisque faucibus ex sapien vitae pellentesque sem placerat. 
+In id cursus mi pretium tellus duis convallis. 
+
+% --- SUBSECTION: CONSTRUCT VALIDITY ---
+\subsection{Construct Validity}
+\label{subsec:construct_validity}
+
+% First block (Indirect Metrics and Operationalization): 
+% Content: Indirect metrics: justify that chosen metrics capture intended constructs, referencing prior work and triangulation where possible.
+Lorem ipsum dolor sit amet consectetur adipiscing elit. 
+Quisque faucibus ex sapien vitae pellentesque sem placerat. 
+In id cursus mi pretium tellus duis convallis. 
+Tempus leo eu aenean sed diam urna tempor. 
+Pulvinar vivamus fringilla lacus nec metus bibendum egestas. 
+Iaculis massa nisl malesuada lacinia integer nunc posuere. 
+Ut hendrerit semper vel class aptent taciti sociosqu. 
+Ad litora torquent per conubia nostra inceptos himenaeos.
+
+% Second block (Measurement Error and Technical Bias): 
+% Content: Measurement error: address logging inaccuracies, self‑report biases, and tool limitations; explain how they might affect interpretations.
+Lorem ipsum dolor sit amet consectetur adipiscing elit. 
+Quisque faucibus ex sapien vitae pellentesque sem placerat. 
+In id cursus mi pretium tellus duis convallis. 
+Tempus leo eu aenean sed diam urna tempor. 
+Pulvinar vivamus fringilla lacus nec metus bibendum egestas. 
+Iaculis massa nisl malesuada lacinia integer nunc posuere. 
+
+% =========================================================================
+% SECTION: CONCLUSION
+% =========================================================================
+\section{Conclusion}
+\label{sec:conclusion}
+
+% Paragraph 1 – Aims and findings synthesis: 
+% Target: 2–4 sentences. 
+% Content: Restate the overall problem and aims in fresh language, then synthesize the main findings across RQs (no detailed numbers).
+Lorem ipsum dolor sit amet consectetur adipiscing elit. 
+Quisque faucibus ex sapien vitae pellentesque sem placerat. 
+In id cursus mi pretium tellus duis convallis. 
+Tempus leo eu aenean sed diam urna tempor. 
+Pulvinar vivamus fringilla lacus nec metus bibendum egestas. 
+Iaculis massa nisl malesuada lacinia integer nunc posuere. 
+Ut hendrerit semper vel class aptent taciti sociosqu.
+
+% Paragraph 2 – Contributions and practical implications: 
+% Target: 2–4 sentences. 
+% Content: Explicitly name the key contributions and what they enable or change for researchers and practitioners.
+Lorem ipsum dolor sit amet consectetur adipiscing elit. 
+Quisque faucibus ex sapien vitae pellentesque sem placerat. 
+In id cursus mi pretium tellus duis convallis. 
+Tempus leo eu aenean sed diam urna tempor. 
+Pulvinar vivamus fringilla lacus nec metus bibendum egestas. 
+Iaculis massa nisl malesuada lacinia integer nunc posuere. 
+Ut hendrerit semper vel class aptent taciti sociosqu.
+
+% Paragraph 3 – Limitations, future work, final takeaway: 
+% Target: 3–4 sentences. 
+% Style Rule: The final sentence must be a confident, synthesized statement—not an apology.
+% Content: Echo the most important limitation/future direction at a high level and end with a strong single sentence that captures the study’s core message.
+Lorem ipsum dolor sit amet consectetur adipiscing elit. 
+Quisque faucibus ex sapien vitae pellentesque sem placerat. 
+In id cursus mi pretium tellus duis convallis. 
+Tempus leo eu aenean sed diam urna tempor. 
+Pulvinar vivamus fringilla lacus nec metus bibendum egestas. 
+Iaculis massa nisl malesuada lacinia integer nunc posuere. 
+Ut hendrerit semper vel class aptent taciti sociosqu. 
+
+% =========================================================================
+% ACKNOWLEDGMENTS
+% =========================================================================
+\section*{Acknowledgments}
+% Target: 1–3 sentences. 
+% Content: Thank funding sources, collaborators, and infrastructure. No technical content.
+Lorem ipsum dolor sit amet consectetur adipiscing elit. 
+Quisque faucibus ex sapien vitae pellentesque sem placerat. 
+In id cursus mi pretium tellus duis convallis. 
+
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{citations}    % For all other submissions
+%\input{main.bbl}          % For arXiv submission
+
+\end{document}

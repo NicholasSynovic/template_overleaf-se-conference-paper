@@ -1,0 +1,141 @@
+% =========================================================================
+% core typography & layout engine
+% =========================================================================
+
+% \usepackage{amssymb,amsmath,amsfonts} % Optional math packages (currently commented)
+\usepackage[T1]{fontenc}               % Uses modern 8-bit font encoding for crisp glyph rendering
+\usepackage{balance}                   % Equalizes the length of columns on the final page of a 2-column layout
+
+% =========================================================================
+% code listing & custom graphical callout containers
+% =========================================================================
+
+\usepackage[most]{tcolorbox}           % Advanced custom framed boxes with advanced skins/listings hooks
+\usepackage{listings}                  % Native source code block layout engine
+\usepackage{xcolor}                    % Comprehensive driver-independent color naming & mixing support
+
+% =========================================================================
+% standard acm-approved helper packages
+% =========================================================================
+
+% --- structural & page geometry control
+\usepackage{afterpage}                 % Postpones execution of commands until the next page break
+\usepackage{float}                     % Enhances figure place control; introduces the rigid [H] specifier
+\usepackage{lscape}                    % Places specific content pages in landscape orientation
+\usepackage{rotating}                  % Rotates text, tables, and figures along arbitrary angle limits
+
+% --- mathematics & computational logic
+\usepackage{algorithmic}               % Structural pseudocode layout environment builder
+
+% --- advanced tabular structures
+\usepackage{array}                     % Extended configuration controls for table column definitions
+\usepackage{booktabs}                  % Renders publication-grade professional horizontal table rules
+\usepackage{makecell}                  % Multiline table cell formatting with manual line breaks
+\usepackage{multirow}                  % Enables cells spanning multiple horizontal rows
+\usepackage{tabularx}                  % Auto-calculates column widths to fit specified horizontal constraints
+\usepackage{longtable}                 % Handles multi-page tables natively within the standard stream
+
+% --- captions & bibliographic citations
+\usepackage[skip=4pt]{caption}         % Uniform control over caption spacing across figures and tables
+\usepackage[compress]{cite}            % Automatically sorts and collapses numeric sequence reference tags
+\usepackage{natbib}[numbers]           % Explicit configuration for structured numeric reference citation types
+
+% --- document hyperlinking & reference automation
+\usepackage{hyperref}                  % Injects interactive hyperlinks and global document indexes
+\usepackage{cleveref}                  % Smart inline references (adds contextual prefixes like "Section" or "Fig.")
+
+% --- list layout control
+\usepackage{enumitem}                  % Fine-grained layout control over itemize, enumerate, and description lists
+
+% --- graphic assets, icons, & utility packages
+% \usepackage{filecontents}            % Pass-through payload file management (currently commented)
+\usepackage{fontawesome5}              % Vector icon engine for system design and repository markers
+\usepackage{graphicx}                  % Core graphics scaling, cropping, and rendering extension
+\usepackage{lipsum}                    % Generates dummy text placeholders for layout prototyping
+\usepackage{siunitx}                   % Uniform typesetting formatting engine for technical units and data measurements
+\usepackage{soul}                      % Provides tracking, kerning, and strike-through/text-highlighting features
+\usepackage{textcomp}                  % Provides specialized miscellaneous symbols and text glyphs
+\usepackage[normalem]{ulem}            % Smooth underlining control; [normalem] prevents breaking \emph highlights
+\usepackage{xspace}                    % Intelligent trailing space macro insertion engine
+
+% =========================================================================
+% page design & heading spacing tweaks
+% =========================================================================
+
+% \usepackage[expectsections, unnumberedsections, fencedCode]{markdown} % Direct Markdown parsing engine (commented)
+% \usepackage[vskip=1em,font=itshape,leftmargin=2em,rightmargin=2em]{quoting} % Advanced blockquote layout engine (commented)
+
+% Compacted section structural layout overrides (currently commented)
+% \titlespacing*{\section}{0pt}{6pt}{4pt}
+% \titlespacing*{\subsection}{0pt}{5pt}{3pt}
+% \titlespacing*{\subsubsection}{0pt}{4pt}{2pt}
+
+% =========================================================================
+% CUSTOM UTILITY MACROS
+% =========================================================================
+
+% --- standard abbreviated latin syntax styling
+\newcommand{\ie}{\textit{i.e.},\xspace}  % Uniformly formats "id est" with correct italicization and spacing
+\newcommand{\eg}{\textit{e.g.},\xspace}  % Uniformly formats "exempli gratia" with correct italicization and spacing
+
+% --- layout constructs
+\newcommand{\myparagraph}[1]{\vspace{0.20cm}\noindent\textbf{#1} \noindent{}} % Spaced bold headers for inline subsections
+
+% --- generative framework / prompts callout containers
+% =========================================================================
+% LLM PROMPT MACRO TEMPLATE
+% Purpose: Formats Large Language Model system instructions, context windows,
+%          or user prompts within a distinct, clean visual container.
+%
+% Usage: \myprompt{Argument #1: Box Heading}{Argument #2: Prompt Text Payload}
+% Example: \myprompt{System Prompt}{Identify software reuse patterns...}
+% =========================================================================
+
+\newcommand{\myprompt}[2]{%
+  \begin{tcolorbox}[
+    enhanced,              % Activates advanced skin engine hooks (requires tcolorbox library 'skins')
+    colback=gray!10,       % Light gray canvas fill background (10% opacity black over white canvas)
+    colframe=black!20,     % Muted gray border line frame color (20% opacity black)
+    boxrule=0.4pt,         % Ultra-thin, crisp frame line boundary thickness
+    arc=1mm,               % Sets a subtle, modern 1mm corner radius curve
+    % Tight geometric padding rules to prevent large text blocks from forcing column overflows:
+    left=2mm,              % Internal text padding buffer from the left border
+    right=2mm,             % Internal text padding buffer from the right border
+    top=1mm,               % Internal text padding buffer beneath the title separator rule
+    bottom=1mm,            % Internal text padding buffer above the lower frame floor
+    fonttitle=\bfseries,   % Sets the box title header typography font to boldface
+    coltitle=black,        % Keeps the title string text plain black for contrast over gray background
+    title={#1},            % Evaluates Positional Argument #1 as the structural header text
+    % Elastic vertical paragraph spacing rules that stretch or shrink to prevent layout underfull breaks:
+    before skip=3pt plus 2pt minus 1pt,
+    after skip=3pt plus 2pt minus 1pt
+  ]
+  \small #2                % Reduces text size inside the box to \small for better scannability of dense text payloads
+  \end{tcolorbox}%         % The trailing '%' character strips accidental trailing whitespaces from compilation output
+}
+
+% --- structured empirical finding blocks
+\newcounter{finding}                   % Declares custom structural metric serialization register
+\newcommand{\newfinding}{%             % Instantiates inline empirical milestone callouts
+    \refstepcounter{finding}           % Increments register metrics sequentially and binds anchor links for \label
+    \textbf{Finding \thefinding.}   % Prints stylized numeric marker index into current structural block stream
+}
+
+% =========================================================================
+% REVIEWER INTERACTION & COLLABORATIVE DEBUG SWITCHES
+% =========================================================================
+
+\ifDEBUG
+    % --- active draft editing marker functions
+    \newcommand{\TODO}[1]{\hl{TODO: #1}} % Visual yellow structural highlight marker
+    \newcommand{\CITE}[1]{\hl{CITE: #1}} % Visual yellow missing source tracking marker
+    
+    % --- colored co-author editorial discussion nodes
+    \newcommand{\NMS}[1]{\textcolor{orange}{[NMS: #1]}} % Nicholas M. Synovic
+\else
+    % --- production compilation overrides (silences markers entirely)
+    \newcommand{\TODO}[1]{}
+    \newcommand{\CITE}[1]{}
+    
+    \newcommand{\NMS}[1]{}
+\fi
