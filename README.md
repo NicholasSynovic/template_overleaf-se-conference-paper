@@ -83,6 +83,11 @@ reveal them, comment out the `\DEBUGfalse` line.
 - `\myparagraph{...}` — bold inline mini-section header (preferred over
   `\subsubsection`).
 - `\newfinding` — numbered "Finding N." marker for use inside a finding box.
+  The counter is global and shared across all finding boxes, so reordering boxes
+  renumbers them. `figures/template_finding.tex` calls `\newfinding` three times
+  to demonstrate sequential numbering; a real finding box typically uses one.
+  (Its inline comment mislabels the macro's source as `typeset/misc.tex`; it is
+  actually defined in `misc/typesetting.tex`.)
 - `\myprompt{title}{body}` — gray callout box for LLM prompts.
 - `\ie` / `\eg` — pre-formatted italic Latin abbreviations.
 - Use `cleveref`'s `\Cref{...}` with `sec:`/`subsec:`/`fig:` labels for all
@@ -90,9 +95,10 @@ reveal them, comment out the `\DEBUGfalse` line.
 
 ### Bibliography
 
-The active engine is **BibTeX + `natbib`** with the `ACM-Reference-Format` style.
-Add entries to `citations.bib`. The bundled biblatex files (`acmauthoryear.bbx`,
-`acmnumeric.bbx`, etc.) are not loaded by the current setup.
+The active engine is **BibTeX + `natbib`** (loaded as `natbib[numbers]`) with the
+`ACM-Reference-Format` style — *not* biblatex. Add entries to `citations.bib`.
+The bundled biblatex files (`acmauthoryear.bbx`, `acmnumeric.bbx`, etc.) are not
+loaded by the current setup; ignore them unless deliberately switching engines.
 
 ## Writing conventions
 

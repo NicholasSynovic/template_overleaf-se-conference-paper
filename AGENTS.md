@@ -18,16 +18,16 @@ pdflatex main
 
 ## Bibliography (read before touching citations)
 
-- The active engine is **BibTeX + `natbib`**, via `\bibliographystyle{ACM-Reference-Format}` + `\bibliography{citations}` (`main.tex:891`) and `\usepackage{natbib}` (`misc/typesetting.tex:41`).
+- The active engine is **BibTeX + `natbib`**, via `\bibliographystyle{ACM-Reference-Format}` + `\bibliography{citations}` (`main.tex:891-892`) and `\usepackage{natbib}[numbers]` (`misc/typesetting.tex:41`).
 - The bundled biblatex files (`acmauthoryear.bbx`, `acmnumeric.bbx`, etc.) are **not** loaded by the current setup. Ignore them unless deliberately switching engines.
 - `citations.bib` is currently empty — add entries there.
-- For arXiv: switch `\bibliography{citations}` to `\input{main.bbl}` (commented hint at `main.tex:892-893`).
+- For arXiv: switch `\bibliography{citations}` to `\input{main.bbl}` (commented hint at `main.tex:893`).
 
 ## Document wiring
 
 - `main.tex` `\input`s `misc/data.tex` (global data macros, currently near-empty) and `misc/typesetting.tex` (all package imports + custom macros).
 - Figures/findings live as standalone files in `figures/` and are pulled in with `\input{figures/...}` (no extension). Reuse `figures/template_figure.tex` and `figures/template_finding.tex` as the canonical patterns.
-- `template_finding.tex` depends on `\newfinding` defined in `misc/typesetting.tex` — the finding counter is shared/global, so reordering finding boxes renumbers them.
+- `template_finding.tex` depends on `\newfinding` defined in `misc/typesetting.tex` (its inline comment wrongly says `typeset/misc.tex`) — the finding counter is shared/global, so reordering finding boxes renumbers them. The template calls `\newfinding` three times to demo numbering; a real box typically uses one.
 
 ## Preprint vs camera-ready
 
